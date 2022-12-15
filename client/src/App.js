@@ -1,0 +1,38 @@
+import React, { useEffect } from "react";
+import { Routes, Route, BrowserRouter, useLocation } from "react-router-dom";
+import Home from "./scenes/home/Home";
+import ItemDetalis from "./scenes/itemDetalis/ItemDetalis";
+import Checkout from "./scenes/checkout/Checkout";
+import Confirmation from "./scenes/checkout/Confirmation";
+import Navbar from "./scenes/global/Navbar";
+import CartMenu from "./scenes/global/CartMenu";
+
+const ScrollToTop = () => {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
+};
+
+const App = () => {
+  return (
+    <div className="app">
+      <BrowserRouter>
+        <Navbar />
+        <ScrollToTop />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/:itemId" element={<ItemDetalis />} />
+          <Route path="/checkout" element={<Checkout />} />
+          <Route path="/checkout/success" element={<Confirmation />} />
+        </Routes>
+        <CartMenu />
+      </BrowserRouter>
+    </div>
+  );
+};
+
+export default App;
