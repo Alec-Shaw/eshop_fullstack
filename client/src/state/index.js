@@ -32,12 +32,13 @@ export const cartSlice = createSlice({
     },
     decreaseCount: (state, action) => {
       state.cart = state.cart.map((item) => {
-        if (item.id === action.payload.id && item > 1) {
+        if (item.id === action.payload.id && item.count > 1) {
           item.count--;
         }
         return item;
       });
     },
+
     setIsCartOpen: (state) => {
       state.isCartOpen = !state.isCartOpen;
     },
